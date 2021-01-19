@@ -101,7 +101,7 @@ namespace LogViewer.Controllers
         }
 
         /// <summary>
-        /// Create
+        /// Create a new record
         /// </summary>
         /// <param name="model">Model to persist</param>
         /// <response code="201">Record created successfully</response>

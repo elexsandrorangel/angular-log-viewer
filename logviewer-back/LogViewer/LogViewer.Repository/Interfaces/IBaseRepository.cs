@@ -11,7 +11,7 @@ namespace LogViewer.Repository.Interfaces
     {
         #region Add
 
-        /// <summay>
+        /// <summary>
         /// Inserts a single object to the database and commits the change
         /// </summary>
         /// <remarks>Asynchronous</remarks>
@@ -85,6 +85,9 @@ namespace LogViewer.Repository.Interfaces
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         /// <param name="match">A linq expression filter to find one or more results</param>
+        /// <param name="page">Page number</param>
+        /// <param name="qty">Itens per page</param>
+        /// <param name="track">Define if the records are tracked by Entity Framework</param>
         /// <returns>An IEnumerable of object which match the expression filter</returns>
         Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> match, 
             int page = 0, int qty = int.MaxValue, 
@@ -95,6 +98,7 @@ namespace LogViewer.Repository.Interfaces
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         /// <param name="id">The primary key of the object to fetch</param>
+        /// <param name="track">Define if the records are tracked by Entity Framework</param>
         /// <returns>A single object with the provided primary key or null</returns>
         Task<TEntity> GetAsync(int id, bool track = false);
 
@@ -103,6 +107,7 @@ namespace LogViewer.Repository.Interfaces
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         /// <param name="match">A Linq expression filter to find a single result</param>
+        /// <param name="track">Define if the records are tracked by Entity Framework</param>
         /// <returns>A single object which matches the expression filter.
         /// If more than one object is found or if zero are found, null is returned</returns>
         Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> match, bool track = false);
@@ -119,6 +124,7 @@ namespace LogViewer.Repository.Interfaces
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         /// <param name="id">The primary key of the object to fetch</param>
+        /// <param name="track">Define if the records are tracked by Entity Framework</param>
         /// <returns>A single object with the provided primary key or null</returns>
         Task<TEntity> GetActiveAsync(int id, bool track = false);
 

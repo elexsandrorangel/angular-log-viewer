@@ -21,6 +21,12 @@ namespace LogViewer.Controllers
         }
 
 
+        /// <summary>
+        /// Import log entries from one or more log files
+        /// </summary>
+        /// <param name="files"></param>
+        /// <remarks>Async action</remarks>
+        /// <returns></returns>
         [HttpPost]
         [Route("import")]
         public async Task<IActionResult> UploadSingle(IFormFile[] files) 

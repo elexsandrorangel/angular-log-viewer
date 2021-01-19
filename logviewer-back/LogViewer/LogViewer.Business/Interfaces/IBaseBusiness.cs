@@ -67,6 +67,7 @@ namespace LogViewer.Business.Interfaces
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         /// <param name="id">The primary key of the object to fetch</param>
+        /// <param name="track">Define if the records are tracked by Entity Framework</param>
         /// <returns>A single object with the provided primary key or null</returns>
         Task<TModel> GetAsync(int id, bool track = false);
 

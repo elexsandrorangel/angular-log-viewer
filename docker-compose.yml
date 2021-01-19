@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=logviewer_prd
+      - POSTGRES_PASSWORD=mysecretpassword
+  logviewer-api:
+    build: ./logviewer-back/LogViewer/
+    ports:
+      - "5000:80"
+    depends_on:
+      - db
+    links:
+      - db
+  web:
+    build: ./logviewer-front/
+    ports: 
+      - "4500:80"
+    depends_on: 
+      - logviewer-api
+    links: 
+      - logviewer-api
