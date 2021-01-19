@@ -1,0 +1,140 @@
+
+<mat-card>
+  <mat-card-content>
+    <h1 *ngIf="isAddMode">Add Log</h1>
+    <h1 *ngIf="!isAddMode">Edit Log</h1>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group col">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <mat-form-field>
+              <mat-label>IP</mat-label>
+              <input type="text" matInput
+                     formControlName="remoteAddr"
+                     placeholder="IP address">
+              <mat-error
+                *ngIf="form.controls.remoteAddr.errors && form.controls.remoteAddr.errors.required">
+                IP address is required
+              </mat-error>
+              <mat-error
+                *ngIf="form.controls.remoteAddr.errors && form.controls.remoteAddr.errors.errorMessage">
+                {{form.controls.remoteAddr.errors.errorMessage}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <mat-form-field>
+              <mat-label>Remote User</mat-label>
+              <input type="text" matInput
+                     formControlName="remoteUser">
+              <mat-error
+                *ngIf="form.controls.remoteUser.errors && form.controls.remoteUser.errors.errorMessage">
+                {{form.controls.remoteUser.errors.errorMessage}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <mat-form-field>
+              <mat-label>Access date</mat-label>
+              <input type="text" matInput
+                     formControlName="timeLocal"
+                     [ngxMatDatetimePicker]="picker1"
+                     placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker1 [touchUi]=false></ngx-mat-datetime-picker>
+              <mat-error
+                *ngIf="form.controls.timeLocal.errors && form.controls.timeLocal.errors.required">
+                The access date is required
+              </mat-error>
+              <mat-error
+                *ngIf="form.controls.timeLocal.errors && form.controls.timeLocal.errors.errorMessage">
+                {{form.controls.timeLocal.errors.errorMessage}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <mat-form-field>
+              <mat-label>Gzip ratio</mat-label>
+              <input type="text" matInput
+                     formControlName="gzipRatio">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <mat-form-field>
+              <mat-label>Request URL</mat-label>
+              <input type="text" matInput
+                     formControlName="requestUrl">
+            </mat-form-field>
+            <mat-error
+              *ngIf="form.controls.requestUrl.touched &&
+                      form.controls.requestUrl.errors && form.controls.requestUrl.errors.required">
+              The Request Url is required
+            </mat-error>
+          </div>
+
+          <div class="col-xs-6 col-sm-6 col-md-3">
+            <mat-form-field>
+              <mat-label>Status Code</mat-label>
+              <input type="text" matInput
+                     formControlName="statusCode">
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="form.controls.statusCode.touched &&
+                    form.controls.statusCode.errors && form.controls.statusCode.errors.required">
+              The Status Code is required
+            </mat-error>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-3">
+            <mat-form-field>
+              <mat-label>Bytes Sent</mat-label>
+              <input type="text" matInput
+                     formControlName="bytesSent">
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="form.controls.bytesSent.errors && form.controls.bytesSent.errors.required">
+              The bytes sent is required
+            </mat-error>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <mat-form-field>
+              <mat-label>Http Reference</mat-label>
+              <input type="text" matInput
+                     formControlName="httpRefer">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <mat-form-field>
+              <mat-label>User Agent</mat-label>
+              <input type="text" matInput
+                     formControlName="httpUserAgent">
+              <mat-error
+                *ngIf="form.controls.httpUserAgent.errors && form.controls.httpUserAgent.errors.required">
+                The user agent is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="form-group text-center">
+        <button [disabled]="loading" mat-raised-button color="primary" class="m-1">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Save
+        </button>
+        <a routerLink="/logs" mat-raised-button>Cancel</a>
+      </div>
+    </form>
+
+  </mat-card-content>
+</mat-card>
+

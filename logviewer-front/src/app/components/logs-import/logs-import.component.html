@@ -1,0 +1,10 @@
+<ngx-dropzone (change)="onSelect($event)" accept="text/plain,text/x-log,.log">
+  <ngx-dropzone-label>Drop your log files here</ngx-dropzone-label>
+  <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  </ngx-dropzone-preview>
+</ngx-dropzone>
+
+<div class="form-group text-center mt-3">
+  <a  [disabled]="loading" routerLink="/logs" mat-raised-button>Back to list</a>
+</div>
